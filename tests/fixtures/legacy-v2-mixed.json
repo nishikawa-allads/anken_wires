@@ -1,0 +1,235 @@
+{
+  "answers": {
+    "postback": true,
+    "measurements": ["web", "app", "phone"]
+  },
+  "mediaLines": [
+    {
+      "id": "default",
+      "name": "旧V2直メディアライン",
+      "isDirect": true
+    },
+    {
+      "id": "asp-line",
+      "name": "旧V2ASPライン",
+      "isDirect": false
+    }
+  ],
+  "routes": [
+    {
+      "id": "web",
+      "measurement": "web",
+      "templateVersion": 2,
+      "nodes": [
+        {
+          "id": "web-media",
+          "role": "media",
+          "title": "旧V2直メディアライン",
+          "system": "メディアライン",
+          "url": "https://example.test/v2-direct",
+          "note": "V2の手動注記",
+          "position": {
+            "x": 58,
+            "y": 91
+          },
+          "manual": ["url", "note", "position"],
+          "mediaLineId": "default"
+        },
+        {
+          "id": "web-media-asp-line",
+          "role": "media",
+          "title": "旧V2ASPライン",
+          "system": "メディアライン",
+          "url": "",
+          "note": "ASP入稿URLを設定",
+          "position": {
+            "x": 0,
+            "y": 360
+          },
+          "manual": [],
+          "mediaLineId": "asp-line"
+        },
+        {
+          "id": "web-aa-asp-line",
+          "role": "aa",
+          "title": "AA入稿URL",
+          "system": "ALLADiN",
+          "url": "",
+          "note": "",
+          "position": {
+            "x": 250,
+            "y": 360
+          },
+          "manual": [],
+          "mediaLineId": "asp-line"
+        },
+        {
+          "id": "web-lp",
+          "role": "lp",
+          "title": "LP",
+          "system": "",
+          "url": "",
+          "note": "",
+          "position": {
+            "x": 500,
+            "y": 120
+          },
+          "manual": [],
+          "tag": {
+            "usage": "enabled",
+            "source": "default",
+            "destination": "",
+            "role": "LP計測",
+            "condition": ""
+          }
+        },
+        {
+          "id": "web-thanks",
+          "role": "thanks",
+          "title": "サンクス",
+          "system": "",
+          "url": "",
+          "note": "",
+          "position": {
+            "x": 750,
+            "y": 120
+          },
+          "manual": [],
+          "tag": {
+            "usage": "disabled",
+            "source": "default",
+            "destination": "",
+            "role": "CV計測",
+            "condition": ""
+          }
+        },
+        {
+          "id": "web-cl",
+          "role": "cl",
+          "title": "CLの計測ツール",
+          "system": "CLの計測ツール",
+          "url": "",
+          "note": "CL側でCV発生。計測方法・成立条件を確認",
+          "position": {
+            "x": 1000,
+            "y": 360
+          },
+          "manual": []
+        },
+        {
+          "id": "web-alladin",
+          "role": "alladin",
+          "title": "ALLADiN",
+          "system": "ALLADiN",
+          "url": "",
+          "note": "CV発生",
+          "position": {
+            "x": 1250,
+            "y": 360
+          },
+          "manual": []
+        }
+      ],
+      "edges": [
+        {
+          "id": "web-media-lp",
+          "source": "web-media",
+          "target": "web-lp",
+          "kind": "navigation",
+          "label": "LPへ遷移",
+          "identifier": "affnmsid"
+        },
+        {
+          "id": "web-media-asp-line-aa-asp-line",
+          "source": "web-media-asp-line",
+          "target": "web-aa-asp-line",
+          "kind": "navigation",
+          "label": "リダイレクト",
+          "identifier": ""
+        },
+        {
+          "id": "web-aa-asp-line-lp",
+          "source": "web-aa-asp-line",
+          "target": "web-lp",
+          "kind": "navigation",
+          "label": "LPへ遷移",
+          "identifier": "affnmsid"
+        },
+        {
+          "id": "web-lp-thanks",
+          "source": "web-lp",
+          "target": "web-thanks",
+          "kind": "navigation",
+          "label": "完了ページへ",
+          "identifier": ""
+        },
+        {
+          "id": "web-thanks-cl",
+          "source": "web-thanks",
+          "target": "web-cl",
+          "kind": "notification",
+          "label": "CL側でCV計測",
+          "identifier": ""
+        },
+        {
+          "id": "web-cl-alladin",
+          "source": "web-cl",
+          "target": "web-alladin",
+          "kind": "notification",
+          "label": "ポストバック",
+          "identifier": ""
+        }
+      ],
+      "status": "defined",
+      "note": ""
+    },
+    {
+      "id": "app",
+      "measurement": "app",
+      "templateVersion": 2,
+      "status": "unresolved",
+      "note": "アプリ内イベント、計測ツール、識別子、CV通知先を確認してください。",
+      "nodes": [
+        {
+          "id": "app-placeholder",
+          "role": "placeholder",
+          "title": "アプリ計測：テンプレート未定",
+          "system": "",
+          "url": "",
+          "note": "アプリ内イベント、計測ツール、識別子、CV通知先を確認してください。",
+          "position": {
+            "x": 0,
+            "y": 120
+          },
+          "manual": []
+        }
+      ],
+      "edges": []
+    },
+    {
+      "id": "phone",
+      "measurement": "phone",
+      "templateVersion": 2,
+      "status": "unresolved",
+      "note": "電話CVの成立条件、番号管理、計測ツール、通知内容を確認してください。参考画像の構成は全案件共通ではありません。",
+      "nodes": [
+        {
+          "id": "phone-placeholder",
+          "role": "placeholder",
+          "title": "電話計測：テンプレート未定",
+          "system": "",
+          "url": "",
+          "note": "旧電話導線の検討メモ",
+          "position": {
+            "x": 0,
+            "y": 120
+          },
+          "manual": ["note"]
+        }
+      ],
+      "edges": []
+    }
+  ],
+  "schemaVersion": 2,
+  "generatorVersion": 2
+}

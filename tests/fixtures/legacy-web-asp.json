@@ -1,0 +1,154 @@
+{
+  "answers": {
+    "isDirect": false,
+    "postback": true,
+    "measurements": ["web"]
+  },
+  "routes": [
+    {
+      "id": "web",
+      "measurement": "web",
+      "templateVersion": 1,
+      "nodes": [
+        {
+          "id": "web-media",
+          "role": "media",
+          "title": "旧版の手動メディア名",
+          "system": "媒体",
+          "url": "https://example.test/legacy-asp",
+          "note": "旧版の注記",
+          "position": {
+            "x": 42,
+            "y": 83
+          },
+          "manual": ["title", "url", "note", "position"]
+        },
+        {
+          "id": "web-aa",
+          "role": "aa",
+          "title": "AA入稿URL",
+          "system": "ALLADiN",
+          "url": "",
+          "note": "",
+          "position": {
+            "x": 250,
+            "y": 120
+          },
+          "manual": []
+        },
+        {
+          "id": "web-lp",
+          "role": "lp",
+          "title": "LP",
+          "system": "",
+          "url": "",
+          "note": "",
+          "position": {
+            "x": 500,
+            "y": 120
+          },
+          "manual": [],
+          "tag": {
+            "usage": "enabled",
+            "source": "default",
+            "destination": "",
+            "role": "LP計測",
+            "condition": ""
+          }
+        },
+        {
+          "id": "web-thanks",
+          "role": "thanks",
+          "title": "サンクス",
+          "system": "",
+          "url": "",
+          "note": "",
+          "position": {
+            "x": 750,
+            "y": 120
+          },
+          "manual": [],
+          "tag": {
+            "usage": "disabled",
+            "source": "default",
+            "destination": "",
+            "role": "CV計測",
+            "condition": ""
+          }
+        },
+        {
+          "id": "web-cl",
+          "role": "cl",
+          "title": "CLの計測ツール",
+          "system": "CLの計測ツール",
+          "url": "",
+          "note": "CL側でCV発生。計測方法・成立条件を確認",
+          "position": {
+            "x": 1000,
+            "y": 360
+          },
+          "manual": []
+        },
+        {
+          "id": "web-alladin",
+          "role": "alladin",
+          "title": "ALLADiN",
+          "system": "ALLADiN",
+          "url": "",
+          "note": "CV発生",
+          "position": {
+            "x": 1250,
+            "y": 360
+          },
+          "manual": []
+        }
+      ],
+      "edges": [
+        {
+          "id": "web-media-aa",
+          "source": "web-media",
+          "target": "web-aa",
+          "kind": "navigation",
+          "label": "リダイレクト",
+          "identifier": ""
+        },
+        {
+          "id": "web-aa-lp",
+          "source": "web-aa",
+          "target": "web-lp",
+          "kind": "navigation",
+          "label": "LPへ遷移",
+          "identifier": "affnmsid"
+        },
+        {
+          "id": "web-lp-thanks",
+          "source": "web-lp",
+          "target": "web-thanks",
+          "kind": "navigation",
+          "label": "完了ページへ",
+          "identifier": ""
+        },
+        {
+          "id": "web-thanks-cl",
+          "source": "web-thanks",
+          "target": "web-cl",
+          "kind": "notification",
+          "label": "CL側でCV計測",
+          "identifier": ""
+        },
+        {
+          "id": "web-cl-alladin",
+          "source": "web-cl",
+          "target": "web-alladin",
+          "kind": "notification",
+          "label": "ポストバック",
+          "identifier": ""
+        }
+      ],
+      "status": "defined",
+      "note": ""
+    }
+  ],
+  "schemaVersion": 1,
+  "generatorVersion": 1
+}
